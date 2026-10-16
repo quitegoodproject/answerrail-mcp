@@ -1,0 +1,35 @@
+{
+  "name": "answerrail-mcp",
+  "version": "1.0.1",
+  "description": "Model Context Protocol (MCP) server for AnswerRail: audit 25k-token RAG truncation, /llms.txt, Google Lighthouse 13.5 ard-schema (ai-catalog.json), and compile Byte-0 Markdown.",
+  "type": "module",
+  "main": "bin/mcp-server.js",
+  "bin": {
+    "answerrail-mcp": "bin/mcp-server.js"
+  },
+  "files": [
+    "bin",
+    "Dockerfile",
+    "LICENSE",
+    "README.md",
+    "glama.json",
+    "smithery.yaml"
+  ],
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "llms-txt",
+    "ai-catalog",
+    "lighthouse",
+    "aeo",
+    "geo",
+    "answerrail"
+  ],
+  "author": "The Quite Good Project <engineering@quitegoodproject.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quitegoodproject/answerrail-mcp.git"
+  },
+  "homepage": "https://answerrail.com"
+}
