@@ -1,0 +1,30 @@
+{
+  "name": "answerrail-mcp",
+  "version": "1.0.2",
+  "description": "Audit 25,000-token HTML RAG truncation, /llms.txt discovery, Google Lighthouse 13.5 ard-schema (ai-catalog.json), and compile Byte-0 Markdown.",
+  "author": "The Quite Good Project",
+  "homepage": "https://answerrail.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/quitegoodproject/answerrail-mcp.git"
+  },
+  "remoteUrl": "https://answerrail.com/mcp",
+  "tools": [
+    {
+      "name": "audit_ai_readiness",
+      "description": "Audits a website URL or domain for AI crawler access, 25,000-token HTML RAG truncation, /llms.txt presence, Schema.org JSON-LD entities, and Google Lighthouse 13.5 Agentic Browsing (/.well-known/ai-catalog.json ARD 1.0)."
+    },
+    {
+      "name": "generate_ai_manifests",
+      "description": "Compiles ready-to-save /llms.txt documentation index and Google Lighthouse 13.5 /.well-known/ai-catalog.json (ARD 1.0) JSON manifests from a live domain."
+    },
+    {
+      "name": "extract_byte0_markdown",
+      "description": "Strips React/Next.js hydration scripts and DOM bloat from any URL, returning clean Byte-0 GitHub-Flavored Markdown (GFM) with front-loaded Schema.org tables."
+    },
+    {
+      "name": "query_truncation_benchmark",
+      "description": "Retrieves empirical benchmark telemetry from the 2026 50-Site SaaS & E-Commerce AI Truncation Study."
+    }
+  ]
+}

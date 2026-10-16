@@ -1,13 +1,63 @@
 # AnswerRail MCP Server (`answerrail-mcp`)
 
-[![quitegoodproject/answerrail-mcp MCP server](https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp/badges/score.svg)](https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp)
 [![npm version](https://img.shields.io/npm/v/answerrail-mcp.svg)](https://www.npmjs.com/package/answerrail-mcp)
+[![Glama MCP Score](https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp/badges/score.svg)](https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-Official **Model Context Protocol (MCP)** server for [AnswerRail](https://answerrail.com) — audit any URL for **Perplexity / ChatGPT 25,000-token HTML truncation**, **`/llms.txt` discovery**, **Google Lighthouse 13.5 `ard-schema` (`/.well-known/ai-catalog.json` ARD 1.0)**, and compile clean **Byte-0 Markdown** directly inside Claude Desktop, Cursor, Windsurf, or any MCP client.
+Official Model Context Protocol (MCP) server for **AnswerRail** ([https://answerrail.com](https://answerrail.com)) — available both as a **local stdio server** (`npx -y answerrail-mcp`) and a **zero-install Remote Streamable HTTP server** (`https://answerrail.com/mcp`).
 
-## Quick Start (`npx`)
+Audit any domain or URL directly inside Claude Desktop, Claude Code, Cursor, Windsurf, or any MCP client for:
+- **AI Crawler Readiness** (`PerplexityBot`, `OAI-SearchBot`, `GPTBot`, `ClaudeBot`, `Google-Extended`)
+- **25,000-Token RAG Truncation Cliff** detection & dropped pricing token diagnostics
+- **`/llms.txt` & `/llms-full.txt` Documentation Index** verification & compilation
+- **Google Lighthouse 13.5 `agentic-browsing`** (`/.well-known/ai-catalog.json` ARD 1.0 schema & `robots.txt` `Agentmap:` directive)
+- **Byte-0 AST De-bloating** (converting heavy React/Next.js/Shopify DOM bloat into clean GitHub-Flavored Markdown)
 
+---
+
+## Tools Included (v1.0.2)
+
+### 1. `audit_ai_readiness`
+Perform a live, read-only diagnostic audit of a website URL or domain for AI search readiness, measuring HTML token weight against the 25,000-token RAG truncation limit, `/llms.txt` manifest availability, Google Lighthouse 13.5 `/.well-known/ai-catalog.json` (ARD 1.0) conformance, `robots.txt` `Agentmap:` directives, and Schema.org JSON-LD entities.
+- **Input:** `url` (string, e.g. `https://stripe.com/pricing` or `example.com`)
+
+### 2. `generate_ai_manifests`
+Generate ready-to-deploy `/llms.txt` Markdown and Google Lighthouse 13.5 `/.well-known/ai-catalog.json` (ARD 1.0) JSON manifests for a target domain, plus `robots.txt` `Agentmap:` and HTML `<head>` discovery `<link>` tags.
+- **Input:** `domain` (string, e.g. `example.com`)
+
+### 3. `extract_byte0_markdown`
+Fetch a live web page, strip React/Next.js hydration chunks, Shopify Liquid DOM bloat, scripts, and navigation cruft, and return clean Byte-0 GitHub-Flavored Markdown (GFM) alongside before/after token telemetry.
+- **Input:** `url` (string, e.g. `https://example.com/pricing`)
+
+### 4. `query_truncation_benchmark`
+Query empirical data from the 2026 50-Site B2B SaaS Pricing Page Truncation Benchmark (`87%` publish `/llms.txt`, yet `74%` still truncate `/pricing` HTML past 25,000 tokens).
+- **Input:** `domain` (optional string, e.g. `vercel.com`, `supabase.com`, or omit for full cohort summary)
+
+---
+
+## Quickstart & Installation
+
+### Option A: Zero-Install Remote HTTP Server (`https://answerrail.com/mcp`)
+
+**Claude Code CLI:**
+```bash
+claude mcp add --transport http answerrail https://answerrail.com/mcp
+```
+
+**Cursor / Windsurf / Remote HTTP Clients:**
+```json
+{
+  "mcpServers": {
+    "answerrail": {
+      "url": "https://answerrail.com/mcp"
+    }
+  }
+}
+```
+
+### Option B: Local Stdio Server (`npx -y answerrail-mcp`)
+
+**Claude Desktop (`claude_desktop_config.json`) / Cursor / Windsurf:**
 ```json
 {
   "mcpServers": {
@@ -19,19 +69,12 @@ Official **Model Context Protocol (MCP)** server for [AnswerRail](https://answer
 }
 ```
 
-## Exposed MCP Tools, Resources & Prompts
+---
 
-### Tools
-1. **`audit_ai_readiness`** — Audits any URL for 25,000-token RAG HTML truncation, visible price omission past byte 100,000, `/llms.txt`, Google Lighthouse 13.5 `ard-schema` (`/.well-known/ai-catalog.json`), and JSON-LD Schema.org entities.
-2. **`generate_llms_txt_and_ard_catalog`** — Generates ready-to-save `/llms.txt` and `/.well-known/ai-catalog.json` (ARD 1.0) manifests for any website.
-3. **`fetch_byte0_markdown`** — Compiles a webpage into clean Byte-0 Markdown via the AnswerRail Edge Engine.
+## Links
+- **Official Website:** [https://answerrail.com](https://answerrail.com)
+- **Remote MCP Endpoint:** [https://answerrail.com/mcp](https://answerrail.com/mcp)
+- **Glama Registry:** [https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp](https://glama.ai/mcp/servers/quitegoodproject/answerrail-mcp)
+- **50-Site Empirical Benchmark:** [https://answerrail.com/research/2026-saas-50-truncation-benchmark](https://answerrail.com/research/2026-saas-50-truncation-benchmark)
 
-### Resources
-- `https://answerrail.com/api/benchmark/2026-saas-50` — 2026 50-Site SaaS Truncation & `/llms.txt` Paradox Empirical Benchmark JSON.
-- `https://answerrail.com/llms.txt` — Official AnswerRail AI documentation index.
-
-### Prompts
-- `audit-website-ai-readiness` — Structured prompt to audit any domain's 25k-token RAG window and Lighthouse 13.5 ARD 1.0 compliance.
-
-## License
-MIT © [The Quite Good Project](https://answerrail.com)
+License: MIT
