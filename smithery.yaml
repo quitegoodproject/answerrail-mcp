@@ -1,0 +1,8 @@
+runtime: node
+startCommand:
+  type: stdio
+  config:
+    command: npx
+    args:
+      - -y
+      - answerrail-mcp
