@@ -1,6 +1,6 @@
 {
   "name": "answerrail-mcp",
-  "version": "1.0.2",
+  "version": "1.2.5",
   "description": "Model Context Protocol (MCP) stdio server for auditing AI crawler readiness, 25k-token RAG truncation, /llms.txt manifests, Schema.org JSON-LD, and Google Lighthouse 13.5 ard-schema (/.well-known/ai-catalog.json)",
   "main": "bin/mcp-server.js",
   "bin": {
@@ -33,5 +33,10 @@
     "answerrail"
   ],
   "author": "The Quite Good Project <engineering@quitegoodproject.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build": "node --check bin/mcp-server.js",
+    "start": "node bin/mcp-server.js",
+    "test": "node --check bin/mcp-server.js"
+  }
 }
