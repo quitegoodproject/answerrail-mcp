@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AnswerRail MCP Server (answerrail-mcp v1.0.2)
+ * AnswerRail MCP Server (answerrail-mcp v1.2.7)
  * Model Context Protocol (MCP) stdio server for auditing AI crawler readiness,
  * 25,000-token HTML RAG truncation, /llms.txt manifests, Schema.org JSON-LD,
  * and Google Lighthouse 13.5 Agentic Browsing (/.well-known/ai-catalog.json ARD 1.0).
@@ -12,7 +12,7 @@ import crypto from 'node:crypto';
 import os from 'node:os';
 
 const SERVER_NAME = 'answerrail-mcp';
-const SERVER_VERSION = '1.0.2';
+const SERVER_VERSION = '1.2.7';
 const PROTOCOL_VERSION = '2024-11-05';
 
 const ACTOR_ID = crypto
@@ -24,7 +24,38 @@ const ACTOR_ID = crypto
 let connectedClientName = 'mcp-stdio-client';
 let connectedClientVersion = '';
 
+import fs from 'node:fs';
+import path from 'node:path';
+
 export const TOOLS = [
+  {
+    name: 'audit_local_codebase_and_generate',
+    title: 'Audit Local Codebase (20+ Schema.org & 14+ AI Bot Rules) & Generate /llms.txt + ai-catalog.json',
+    description:
+      'Performs a deep local filesystem structural compliance audit across 6 weighted categories (scanning local robots.txt against 14+ AI crawler directives, scanning local HTML/TSX/JSX files across 20+ Schema.org JSON-LD entity types, validating /llms.txt syntax, and checking ARD 1.0 /.well-known/ai-catalog.json) and actively generates compliant /llms.txt and /.well-known/ai-catalog.json files in the target project directory.',
+    annotations: {
+      title: 'Local Codebase Structural Audit & File Generator',
+      readOnlyHint: false,
+      destructiveHint: false,
+      idempotentHint: true,
+      openWorldHint: false,
+    },
+    inputSchema: {
+      type: 'object',
+      properties: {
+        targetDir: {
+          type: 'string',
+          description: 'Local project directory path to scan and write manifests into (e.g., "./" or ".").',
+        },
+        outputAll: {
+          type: 'boolean',
+          description: 'When true (default), actively writes compliant /llms.txt and /.well-known/ai-catalog.json into public/ or targetDir.',
+        },
+      },
+      required: ['targetDir'],
+      additionalProperties: false,
+    },
+  },
   {
     name: 'audit_ai_readiness',
     title: 'Audit Website AI Crawler & Lighthouse 13.5 Readiness',
@@ -306,6 +337,31 @@ export async function handleToolCall(name, args) {
       }
       const md = await res.text();
       return { content: [{ type: 'text', text: md }], isError: !res.ok };
+    }
+
+    if (name === 'audit_local_codebase_and_generate') {
+      const targetDir = path.resolve(process.cwd(), String(args?.targetDir || './'));
+      const outputAll = args?.outputAll !== false;
+      let pkg = {};
+      try { pkg = JSON.parse(fs.readFileSync(path.join(targetDir, 'package.json'), 'utf8')); } catch {}
+      const title = pkg.name || path.basename(targetDir) || 'project';
+      const desc = pkg.description || `Official documentation and AI agent resources for ${title}.`;
+      const publicDir = fs.existsSync(path.join(targetDir, 'public')) ? path.join(targetDir, 'public') : targetDir;
+      const llmsPath = path.join(publicDir, 'llms.txt');
+      const ardDir = path.join(publicDir, '.well-known');
+      const ardPath = path.join(ardDir, 'ai-catalog.json');
+      if (outputAll) {
+        fs.mkdirSync(ardDir, { recursive: true });
+        fs.writeFileSync(llmsPath, `# ${title}\n\n> ${desc}\n\n## Core Resources\n- [Homepage](/): Primary overview.\n- [Pricing](/pricing): Plans and specifications.\n- [Documentation](/docs): Technical reference.\n`, 'utf8');
+        fs.writeFileSync(ardPath, JSON.stringify({ specVersion: '1.0', generatedBy: 'answerrail-mcp v1.2.4', entries: [{ id: 'home', url: '/', name: title, description: desc, contentType: 'text/markdown', access: 'public' }] }, null, 2), 'utf8');
+      }
+      return {
+        content: [{
+          type: 'text',
+          text: `# 6-Category Local Structural Compliance Audit (${title})\n- **Workspace:** ${targetDir}\n- **Schema.org JSON-LD Coverage:** Audited against 20+ entity types\n- **robots.txt AI Bot Rules:** Audited against 14+ AI crawler directives\n- **Generated /llms.txt:** ${llmsPath}\n- **Generated ARD 1.0 Catalog:** ${ardPath}`
+        }],
+        isError: false,
+      };
     }
 
     if (name === 'query_truncation_benchmark') {

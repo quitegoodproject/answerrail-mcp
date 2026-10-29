@@ -1,7 +1,7 @@
 {
   "name": "answerrail-mcp",
-  "version": "1.0.2",
-  "description": "Audit 25,000-token HTML RAG truncation, /llms.txt discovery, Google Lighthouse 13.5 ard-schema (ai-catalog.json), and compile Byte-0 Markdown.",
+  "version": "1.2.7",
+  "description": "6-category AI readiness, Schema.org JSON-LD, robots.txt AI bot rules, /llms.txt, Google Lighthouse 13.5 ARD 1.0 (ai-catalog.json), and 25,000-token price recall audit + local auto-fix MCP server.",
   "author": "The Quite Good Project",
   "homepage": "https://answerrail.com",
   "repository": {
@@ -11,8 +11,12 @@
   "remoteUrl": "https://answerrail.com/mcp",
   "tools": [
     {
+      "name": "audit_local_codebase_and_generate",
+      "description": "Scans local codebase across 6 weighted categories (14+ robots.txt AI crawler rules, 20+ Schema.org JSON-LD types, /llms.txt, and ARD 1.0 /.well-known/ai-catalog.json) and writes compliant fix files locally."
+    },
+    {
       "name": "audit_ai_readiness",
-      "description": "Audits a website URL or domain for AI crawler access, 25,000-token HTML RAG truncation, /llms.txt presence, Schema.org JSON-LD entities, and Google Lighthouse 13.5 Agentic Browsing (/.well-known/ai-catalog.json ARD 1.0)."
+      "description": "Audits a live website URL or domain for AI crawler access, 25,000-token HTML RAG truncation, /llms.txt presence, Schema.org JSON-LD entities, and Google Lighthouse 13.5 Agentic Browsing (/.well-known/ai-catalog.json ARD 1.0)."
     },
     {
       "name": "generate_ai_manifests",

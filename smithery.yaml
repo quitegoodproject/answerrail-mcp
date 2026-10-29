@@ -1,8 +1,8 @@
-runtime: node
 startCommand:
   type: stdio
-  config:
-    command: npx
-    args:
-      - -y
-      - answerrail-mcp
+  configSchema:
+    type: object
+    properties: {}
+  command: node
+  args:
+    - bin/mcp-server.js

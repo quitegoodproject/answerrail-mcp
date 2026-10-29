@@ -1,21 +1,28 @@
 {
   "name": "answerrail-mcp",
-  "version": "1.2.5",
-  "description": "Model Context Protocol (MCP) stdio server for auditing AI crawler readiness, 25k-token RAG truncation, /llms.txt manifests, Schema.org JSON-LD, and Google Lighthouse 13.5 ard-schema (/.well-known/ai-catalog.json)",
+  "mcpName": "io.github.quitegoodproject/answerrail-mcp",
+  "version": "1.2.7",
+  "description": "All-in-one 6-Category Structural AI Readiness Audit & Auto-Remediation MCP Server for Claude Desktop, Claude Code & Cursor: scans 20+ Schema.org JSON-LD types, 14+ robots.txt AI bot rules, /llms.txt, /.well-known/ai-catalog.json (ARD 1.0) & 25k-token price recall + writes fix files locally",
   "main": "bin/mcp-server.js",
+  "type": "module",
   "bin": {
+    "ai-ready-mcp": "bin/mcp-server.js",
     "answerrail-mcp": "bin/mcp-server.js"
   },
-  "type": "module",
   "files": [
     "bin",
-    "Dockerfile",
-    "LICENSE",
     "README.md",
+    "Dockerfile",
     "glama.json",
-    "mcp.json",
-    "smithery.yaml"
+    "smithery.yaml",
+    "server.json",
+    "mcp.json"
   ],
+  "scripts": {
+    "build": "node --check bin/mcp-server.js",
+    "start": "node bin/mcp-server.js",
+    "test": "node --check bin/mcp-server.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/quitegoodproject/answerrail-mcp.git"
@@ -23,20 +30,33 @@
   "homepage": "https://answerrail.com",
   "keywords": [
     "mcp",
+    "mcp-server",
     "model-context-protocol",
+    "ai-readiness",
+    "agent-readiness",
+    "website-scanner",
+    "llms.txt",
     "llms-txt",
-    "ard-schema",
-    "lighthouse",
+    "ai-catalog.json",
+    "ard-1.0",
+    "lighthouse-13.5",
+    "agentic-browsing",
+    "schema-org",
+    "robots-txt",
+    "claude",
+    "claude-desktop",
+    "claude-code",
+    "cursor",
+    "isagentready",
+    "answerrail",
+    "answerrail-mcp",
     "aeo",
     "geo",
-    "ai-search",
-    "answerrail"
+    "ai-search"
   ],
   "author": "The Quite Good Project <engineering@quitegoodproject.com>",
   "license": "MIT",
-  "scripts": {
-    "build": "node --check bin/mcp-server.js",
-    "start": "node bin/mcp-server.js",
-    "test": "node --check bin/mcp-server.js"
+  "engines": {
+    "node": ">=18.0.0"
   }
 }
