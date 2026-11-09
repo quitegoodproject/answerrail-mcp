@@ -1,45 +1,46 @@
-# answerrail-mcp — 6-Category Structural AI Readiness, Schema.org, `robots.txt` & `/llms.txt` Audit + Auto-Remediation MCP Server
+# answerrail-mcp — 6-Category Structural AI Readiness, Chrome Lighthouse 13.5 `ard-schema`, `robots.txt` & 25k-Token Truncation MCP Server
 
 [![npm version](https://img.shields.io/npm/v/answerrail-mcp.svg)](https://www.npmjs.com/package/answerrail-mcp)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![MCP](https://img.shields.io/badge/MCP-compatible-purple.svg)](https://modelcontextprotocol.io)
 
-Comprehensive Model Context Protocol (MCP) server for **exhaustive local and live structural audits** across **6 weighted AI readiness categories**—plus **active file generation** inside Claude Code, Claude Desktop, Cursor, and Windsurf. No API key required.
+Model Context Protocol (MCP) server for **6-category AI search readiness and Chrome Lighthouse 13.5 `agentic-browsing` (`llms-txt` & `ard-schema`) diagnostics** inside Claude Code, Claude Desktop, Cursor, Windsurf, and LobeHub. Zero API key required.
 
-## Quick Install for Claude Code, Claude Desktop & Cursor
+## Quick Install (Local `stdio` or Zero-Install Remote HTTP MCP)
 
 ```bash
 claude mcp add answerrail-mcp -- npx -y answerrail-mcp
 ```
 
-| Client | Easiest Install Command / Config |
+| Client | Configuration |
 | :--- | :--- |
 | **Claude Code CLI** | `claude mcp add answerrail-mcp -- npx -y answerrail-mcp` |
-| **Claude Desktop** | `"answerrail-mcp": { "command": "npx", "args": ["-y", "answerrail-mcp"] }` |
-| **Cursor / Windsurf** | Add `npx -y answerrail-mcp` in `.cursor/mcp.json` |
+| **Claude Desktop / Cursor** | `"answerrail-mcp": { "command": "npx", "args": ["-y", "answerrail-mcp"] }` |
+| **Remote Streamable HTTP MCP** | `POST https://answerrail.com/mcp` |
 
 ---
 
-## Exhaustive 6-Category Weighted Structural Audit Scope
+## Included MCP Tools
 
-Unlike read-only 5-category scanners, `answerrail-mcp` performs a **6-category deep structural audit** and **actively writes the missing files into your repository**:
-
-1. **AI Bot Directives (`robots.txt` — 14+ Major AI Crawlers + `Agentmap:`)**: Audits exact RFC 9309 allow/disallow rules for **14+ AI user-agents** (`PerplexityBot`, `OAI-SearchBot`, `GPTBot`, `ChatGPT-User`, `ClaudeBot`, `Claude-User`, `Google-Extended`, `Applebot-Extended`, `Meta-ExternalAgent`, `Amazonbot`, `DuckAssistBot`, `Cohere-ai`, `Bytespider`, `CCBot`) and verifies `Agentmap:` header/file declarations.
-2. **Search Signals & Structured Data (`Schema.org JSON-LD` — 20+ High-Value Entity Types)**: Scans and validates **20+ Schema.org types** (`Organization`, `SoftwareApplication`, `WebSite`, `Product`, `Offer`, `AggregateOffer`, `FAQPage`, `Question`, `Answer`, `TechArticle`, `Article`, `BreadcrumbList`, `HowTo`, `Service`, `LocalBusiness`, `Person`, `Dataset`, `WebPage`, `ItemList`, `Review`) and synthesizes them into Byte-0 GitHub-Flavored Markdown tables.
-3. **Deep `/llms.txt` & `/llms-full.txt` Structural Validation**: Audits H1 title conformance, blockquote summary presence, Markdown link formatting, HTTP `Content-Type: text/markdown` headers, and entry quality.
-4. **Content Semantics & 25,000-Token RAG Truncation**: Measures raw HTML token weight, Next.js `self.__next_f.push` RSC hydration bloat, collapsed Radix/Headless UI (`data-state="closed"`) FAQ accordions, and exact `$/£/€` pricing tokens dropped past the 25,000-token cutoff.
-5. **Agent Protocols (Google Lighthouse 13.5 ARD 1.0 & WebMCP)**: Validates `/.well-known/ai-catalog.json` (`specVersion: "1.0"`), `<link rel="ai-catalog">`, `<link rel="describedby" href="/llms.txt">`, and `/.well-known/mcp.json`.
-6. **Security & Cryptographic Provenance (RFC 9421 & RFC 9110)**: Audits asymmetric Ed25519 HTTP Message Signatures (`kid="ar_ed25519_2026_k1"`), `/.well-known/http-message-signatures-directory`, CORS (`Access-Control-Allow-Origin: *`), and RFC 9110 `Vary: User-Agent, Accept` compliance.
+1. **`audit_ai_readiness`**: Audits any live URL across 6 weighted categories: 14+ `robots.txt` AI crawler directives + `Agentmap:`, 20+ `Schema.org` JSON-LD entity types, `/llms.txt` format, **25,000-token HTML RAG truncation & dropped `$/£/€` price recall**, Chrome Lighthouse 13.5 `/.well-known/ai-catalog.json` (`ard-schema`), and RFC 9421 Ed25519 provenance.
+2. **`generate_ai_manifests`**: Compiles a 6-line diagnostic preview of `/llms.txt` and ARD 1.0 `/.well-known/ai-catalog.json` + direct 2-tier remediation links.
+3. **`extract_byte0_markdown`**: Strips React/Next.js RSC hydration scripts and DOM bloat from any URL into clean Byte-0 GitHub-Flavored Markdown.
+4. **`query_truncation_benchmark`**: Queries empirical data from the [2026 50-Site SaaS Pricing & 25k-Token Truncation Study](https://answerrail.com/research/2026-saas-50-truncation-benchmark).
+5. **`audit_local_codebase`**: Read-only local repository check for `robots.txt`, `public/llms.txt`, and `public/.well-known/ai-catalog.json`.
 
 ---
 
-## Head-to-Head Comparison: `answerrail-mcp` vs `isagentready-mcp`
+## 2-Tier Remediation, Hormozi Tiers & Free Diagnostic Tools
 
-| Feature / Metric | `answerrail-mcp` | `isagentready-mcp` |
-| :--- | :--- | :--- |
-| **Install Command** | `claude mcp add answerrail-mcp -- npx -y answerrail-mcp` | `claude mcp add isagentready-mcp -- npx -y isagentready-mcp` |
-| **Core Audit Scope** | **6 Weighted Categories:** AI Bot Directives (`robots.txt`), Search Signals (`Schema.org JSON-LD`), Deep `/llms.txt` Structure, Content Semantics & 25k-Token Truncation, Agent Protocols (ARD 1.0 / WebMCP), and Security (RFC 9421 Ed25519) + Edge Remediation | 5 Categories (Discovery, Structured Data, Semantics, Agent Protocols, Security — Read-only score) |
-| **Schema.org & `robots.txt` Coverage** | **Scans 20+ Schema.org JSON-LD types & 14+ AI bot rules in `robots.txt`** (plus compiles JSON-LD into Byte-0 GFM tables) | Scans 17 Schema.org types & 13 AI bot rules |
-| **`/llms.txt` Validation & Auto-Generation** | **Validates `/llms.txt` formatting/links AND generates ready-to-save `/llms.txt` + `/.well-known/ai-catalog.json` via `generate_ai_manifests`** | Read-only structural check (Does not generate files) |
-| **25,000-Token Truncation & Price Recall Audit** | **Yes — Identifies exact `$/£/€` prices cut off past 25k tokens & unrolls collapsed Radix FAQ accordions** | No |
-| **Editor Auto-Fix & Local CLI Companion** | **Generates & writes files locally (`generate_ai_manifests` + `npx test-ai-ready <url> --write`) AND deploys instant Anycast edge fixes** | Relies on manual editor prompts after read-only API scan |
+- **[$79 Zero-DNS 7-File GEO Fix Pack ($79 One-Time · $1,350 Dev Build Value · 100/100 Lighthouse 13.5 Pass 14-Day Guarantee · 100% Credited to Starter)](https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp_readme)**: Validated `/llms.txt`, `/llms-full.txt`, dual `/.well-known/ai-catalog.json` & `/.well-known/ard.json`, `robots.txt` `Agentmap:`, `Schema.org @graph`, and Zero-DNS Cloudflare Worker.
+- **Automated Anycast Edge Rail Plans ([https://answerrail.com/#pricing](https://answerrail.com/#pricing))**:
+  - **Starter ($99/mo · 1 Production Domain)**: Automated `<15ms` Byte-0 Markdown content negotiation across 330+ Cloudflare PoPs with 100% fail-closed price/FAQ recall.
+  - **Growth ($249/mo · 5 Production Domains)**: Multi-domain edge proxy with continuous catalog synchronization.
+  - **Agency ($599/mo · 15 Client Domains)**: Multi-client management, white-label audits, and dedicated enterprise support.
+- **Free Web Validators & Empirical Research**:
+  - **[Free `/llms.txt` & `/llms-full.txt` Generator (with 25k-Token Proof)](https://answerrail.com/tools/llms-txt-generator)**
+  - **[`/llms.txt` & ARD 1.0 `ai-catalog.json` Validator (for Lighthouse 13.5)](https://answerrail.com/tools/llms-txt-validator)**
+  - **[2026 50-Site SaaS Pricing & 25k-Token Truncation Benchmark](https://answerrail.com/research/2026-saas-50-truncation-benchmark)**
+  - [Lighthouse 13.5 Checker](https://answerrail.com/tools/lighthouse-13-5-agentic-browsing-checker) · [`ai-catalog.json` Generator](https://answerrail.com/tools/ai-catalog-json-generator) · [25k-Token Truncation Checker](https://answerrail.com/tools/25k-token-truncation-checker) · [Shopify/Webflow `/llms.txt` Tool](https://answerrail.com/tools/shopify-wordpress-webflow-llms-txt-generator) · [Next.js SPA Crawler Checker](https://answerrail.com/tools/nextjs-react-spa-ai-crawler-checker) · [Dark AI GA4 Regex](https://answerrail.com/tools/dark-ai-ga4-referral-tracker) · [Agency White-Label Audit](https://answerrail.com/tools/white-label-geo-audit-agency).
+
+> **Entity Disambiguation:** **AnswerRail ([https://answerrail.com](https://answerrail.com))** by The Quite Good Project is unaffiliated with *AnswerRails* (`answerrails.com`, an unrelated WordPress chatbot plugin).
