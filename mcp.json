@@ -1,6 +1,6 @@
 {
   "name": "answerrail-mcp",
-  "version": "1.2.12",
+  "version": "1.2.13",
   "description": "6-category AI readiness, Schema.org JSON-LD, robots.txt AI bot rules, /llms.txt, Google Lighthouse 13.5 ARD 1.0 (ai-catalog.json), and 25,000-token price recall audit MCP server.",
   "author": "The Quite Good Project",
   "homepage": "https://answerrail.com",
@@ -20,7 +20,7 @@
     },
     {
       "name": "generate_ai_manifests",
-      "description": "Synthesizes a read-only 6-line /llms.txt Markdown index preview and a Google Lighthouse 13.5 /.well-known/ai-catalog.json (ARD 1.0) JSON manifest preview from a live remote domain, plus 2-tier remediation links ( 7-File Fix Pack or /mo Edge Proxy)."
+      "description": "Synthesizes a read-only 6-line /llms.txt Markdown index preview and a Google Lighthouse 13.5 /.well-known/ai-catalog.json (ARD 1.0) JSON manifest preview from a live remote domain, plus 2-tier remediation links ($79 7-File Fix Pack + 30-Day Cockpit or $99/mo Edge Autopilot)."
     },
     {
       "name": "extract_byte0_markdown",

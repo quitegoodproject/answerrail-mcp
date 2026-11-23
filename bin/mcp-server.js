@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 /**
- * AnswerRail MCP Server (answerrail-mcp v1.2.9)
+ * AnswerRail MCP Server (answerrail-mcp v1.2.13)
  * Model Context Protocol (MCP) stdio server for auditing AI crawler readiness,
  * 25,000-token HTML RAG truncation, /llms.txt manifests, Schema.org JSON-LD,
  * and Google Lighthouse 13.5 Agentic Browsing (/.well-known/ai-catalog.json ARD 1.0).
@@ -10,9 +10,11 @@
 import readline from 'node:readline';
 import crypto from 'node:crypto';
 import os from 'node:os';
+import fs from 'node:fs';
+import path from 'node:path';
 
 const SERVER_NAME = 'answerrail-mcp';
-const SERVER_VERSION = '1.2.12';
+const SERVER_VERSION = '1.2.13';
 const PROTOCOL_VERSION = '2024-11-05';
 
 const ACTOR_ID = crypto
@@ -23,9 +25,6 @@ const ACTOR_ID = crypto
 
 let connectedClientName = 'mcp-stdio-client';
 let connectedClientVersion = '';
-
-import fs from 'node:fs';
-import path from 'node:path';
 
 export const TOOLS = [
   {
@@ -250,13 +249,13 @@ export async function handleToolCall(name, args) {
         `- **Lighthouse 13.5 ard-schema (/.well-known/ai-catalog.json):** ${hasArd ? `PASS (ARD 1.0 valid, ${ardRes.json.entries.length} entries)` : 'MISSING (Fails Lighthouse 13.5 ard-schema audit)'}`,
         `- **robots.txt Agentmap Directive:** ${hasAgentmap ? 'PASS' : 'MISSING (Add Agentmap: https://' + domain + '/.well-known/ai-catalog.json)'}`,
         `- **Detected Schema.org Entities:** ${(d.detectedSchemaTypes || d.extractedEntities || []).join(', ') || 'None detected'}`,
-        `- **Architectural Verdict:** ${isTruncated ? 'Tier 2 — HTML exceeds 25,000 tokens; requires Layer-7 Edge Markdown Proxy or answerrail/next middleware to prevent RAG pricing truncation.' : 'Tier 1 — HTML fits within 25,000 tokens (Deploy $79 Zero-DNS 7-File GEO Fix Pack for production /llms.txt, ard-schema, and schema graphs).'}`,
+        `- **Architectural Verdict:** ${isTruncated ? 'Tier 2 — HTML exceeds 25,000 tokens; requires Layer-7 Edge Markdown Proxy or answerrail/next middleware to prevent RAG pricing truncation.' : 'Tier 1 Action Required — While HTML fits within 25,000 tokens, static pages without ARD 1.0 + Zero-Click Wedge + GA4 Dark-AI Attribution leak full answers inline with 0 tracked clicks; deploy the $79 Zero-DNS Fix + GA4 Attribution Pack (100% auto-credited on upgrade to $99/mo Starter).'}`,
         ``,
         `## Live Remediation & Attribution Links
 - **Full Diagnostic Report:** https://answerrail.com/report/${domain}?utm_source=mcp&utm_medium=audit_tool
-- **Lighthouse 13.5 ARD 1.0 Implementation Guide:** https://answerrail.com/geo/lighthouse-agentic-browsing-ai-catalog-json\n- **Free /llms.txt & /llms-full.txt Generator (with 25k-Token Proof):** https://answerrail.com/tools/llms-txt-generator\n- **/llms.txt & ARD 1.0 ai-catalog.json Validator (for Lighthouse 13.5):** https://answerrail.com/tools/llms-txt-validator\n- **2026 50-Site SaaS Pricing & 25k-Token Truncation Benchmark:** https://answerrail.com/research/2026-saas-50-truncation-benchmark
-- **Unlock Full 7-File Zero-DNS GEO Fix Pack ($79 One-Time, 100% Credited to Starter):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp&domain=${encodeURIComponent(domain)}
-- **Automated Edge Proxy ($99/mo Starter):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp&domain=${encodeURIComponent(domain)}`,
+- **Lighthouse 13.5 ARD 1.0 Implementation Guide:** https://answerrail.com/geo/lighthouse-agentic-browsing-ai-catalog-json-llms-txt\n- **Free /llms.txt & /llms-full.txt Generator (with 25k-Token Proof):** https://answerrail.com/tools/llms-txt-generator\n- **/llms.txt & ARD 1.0 ai-catalog.json Validator (for Lighthouse 13.5):** https://answerrail.com/tools/llms-txt-validator\n- **2026 50-Site SaaS Pricing & 25k-Token Truncation Benchmark:** https://answerrail.com/research/2026-saas-50-truncation-benchmark
+- **Unlock Permanent 7-File Zero-DNS Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time, 100% Credited to Starter):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp&domain=${encodeURIComponent(domain)}
+- **Automated 24/7 Edge Autopilot ($99/mo Starter · $20 Month 1 w/ $79 Credit):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp&domain=${encodeURIComponent(domain)}`,
       ].join('\n');
 
       return { content: [{ type: 'text', text: reportText }], isError: false };
@@ -311,8 +310,8 @@ export async function handleToolCall(name, args) {
         '```',
         ``,
         `## 3. Unlock Validated 7-File Production Bundle or Edge Proxy`,
-        `- **Unlock Full 7-File Zero-DNS GEO Fix Pack ($79 One-Time, 100% Credited to Starter — delivers validated /llms.txt, /llms-full.txt, /.well-known/ai-catalog.json, /.well-known/ard.json, robots.txt Agentmap, Schema.org @graph & Zero-DNS Worker):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp&domain=${encodeURIComponent(domain)}`,
-        `- **Automate at Cloudflare Edge ($99/mo Starter — sub-15ms Byte-0 Markdown compaction across 330+ PoPs):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp&domain=${encodeURIComponent(domain)}`,
+        `- **Unlock Permanent 7-File Zero-DNS Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time, 100% Credited to Starter — delivers 1-Click WP .zip, /llms.txt, /llms-full.txt, /.well-known/ai-catalog.json, /.well-known/ard.json, Schema.org @graph & GA4 ai-attribution.js):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp&domain=${encodeURIComponent(domain)}`,
+        `- **Automate 24/7 at Cloudflare Edge ($99/mo Starter · $20 Month 1 w/ $79 Credit — sub-15ms Byte-0 Markdown compaction across 330+ PoPs):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp&domain=${encodeURIComponent(domain)}`,
         `- **Live Interactive Report:** https://answerrail.com/report/${domain}?utm_source=mcp&utm_medium=manifest_preview`,
       ].join('\n');
 
@@ -335,7 +334,13 @@ export async function handleToolCall(name, args) {
         return { content: [{ type: 'text', text: `Failed to reach https://answerrail.com/proxy for ${parsed.href}` }], isError: true };
       }
       const md = await res.text();
-      return { content: [{ type: 'text', text: md }], isError: !res.ok };
+      const ctaFooter = [
+        ``,
+        `---`,
+        `- **Live Diagnostic Report:** https://answerrail.com/report/${encodeURIComponent(domain)}?utm_source=mcp&utm_medium=extract_byte0_markdown`,
+        `- **Unlock Permanent 7-File Zero-DNS Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time, 100% Credited to Starter):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp&domain=${encodeURIComponent(domain)}`,
+      ].join('\n');
+      return { content: [{ type: 'text', text: res.ok ? `${md}${ctaFooter}` : md }], isError: !res.ok };
     }
 
     if (name === 'audit_local_codebase' || name === 'audit_local_codebase_and_generate') {
@@ -353,6 +358,14 @@ export async function handleToolCall(name, args) {
       const hasLocalLlms = fs.existsSync(path.join(publicDir, 'llms.txt'));
       const hasLocalArd = fs.existsSync(path.join(publicDir, '.well-known', 'ai-catalog.json')) || fs.existsSync(path.join(publicDir, '.well-known', 'ard.json'));
       const hasRobots = fs.existsSync(path.join(publicDir, 'robots.txt')) || fs.existsSync(path.join(targetDir, 'robots.txt'));
+
+      reportFunnelEvent({
+        stage: 'mcp_local_audit',
+        toolName: 'audit_local_codebase',
+        domain: cleanDomain,
+        hasLlmsTxt: hasLocalLlms,
+        hasArd: hasLocalArd,
+      });
 
       const preview = [
         `# ${title}`,
@@ -383,8 +396,9 @@ export async function handleToolCall(name, args) {
       lines.push(
         ``,
         `## 2-Tier Remediation`,
-        `- **Unlock Validated 7-File Zero-DNS GEO Fix Pack ($79 One-Time, 100% Credited to Starter):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp_local&domain=${encodeURIComponent(cleanDomain)}`,
-        `- **Deploy Automated Cloudflare Edge Proxy ($99/mo Starter):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp_local&domain=${encodeURIComponent(cleanDomain)}`
+        `- **Live Diagnostic Report:** https://answerrail.com/report/${encodeURIComponent(cleanDomain)}?utm_source=mcp&utm_medium=local_audit`,
+        `- **Unlock Permanent 7-File Zero-DNS Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time, 100% Credited to Starter):** https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp_local&domain=${encodeURIComponent(cleanDomain)}`,
+        `- **Deploy Automated 24/7 Cloudflare Edge Autopilot ($99/mo Starter · $20 Month 1 w/ $79 Credit):** https://answerrail.com/api/checkout/start?plan=starter&channel=mcp_local&domain=${encodeURIComponent(cleanDomain)}`
       );
 
       return {
@@ -405,12 +419,18 @@ export async function handleToolCall(name, args) {
         toolName: 'query_truncation_benchmark',
         domain: filterDomain || 'benchmark-summary',
       });
+      const reportLinkLine = filterDomain
+        ? `- **Live Diagnostic Report:** https://answerrail.com/report/${encodeURIComponent(filterDomain)}?utm_source=mcp&utm_medium=benchmark`
+        : `- **Live Diagnostic Report:** https://answerrail.com/report/<domain> (pass \`domain\` to target a specific site)`;
+      const fixPackLink = `https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp${filterDomain ? `&domain=${encodeURIComponent(filterDomain)}` : ''}`;
       const text = [
         `# 2026 50-Site SaaS & E-Commerce AI Truncation Benchmark`,
         filterDomain ? `Filtered Domain Query: **${filterDomain}** (Included in Top Truncating Domains: ${(data.topTruncatingDomains || []).includes(filterDomain) ? 'YES — Truncates past 25k tokens' : 'Check live via audit_ai_readiness'})` : '',
         `- **Key Finding (The Static /llms.txt Paradox):** ${data.theParadox || '87% publish /llms.txt, yet 74% truncate /pricing HTML past 25,000 tokens and 62% omit distinct visible prices.'}`,
         `- **Full Dataset JSON:** \`\`\`json\n${JSON.stringify(data.summary || data, null, 2)}\n\`\`\``,
         `- **Full Research Paper:** https://answerrail.com/research/2026-saas-50-truncation-benchmark?utm_source=mcp`,
+        reportLinkLine,
+        `- **Unlock Permanent 7-File Zero-DNS Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time, 100% Credited to Starter):** ${fixPackLink}`,
       ].filter(Boolean).join('\n\n');
       return { content: [{ type: 'text', text }], isError: false };
     }

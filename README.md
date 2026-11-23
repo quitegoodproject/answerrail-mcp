@@ -30,13 +30,13 @@ claude mcp add answerrail-mcp -- npx -y answerrail-mcp
 
 ---
 
-## 2-Tier Remediation, Hormozi Tiers & Free Diagnostic Tools
+## 2-Tier Remediation & Diagnostic Tools
 
-- **[$79 Zero-DNS 7-File GEO Fix Pack ($79 One-Time · $1,350 Dev Build Value · 100/100 Lighthouse 13.5 Pass 14-Day Guarantee · 100% Credited to Starter)](https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp_readme)**: Validated `/llms.txt`, `/llms-full.txt`, dual `/.well-known/ai-catalog.json` & `/.well-known/ard.json`, `robots.txt` `Agentmap:`, `Schema.org @graph`, and Zero-DNS Cloudflare Worker.
-- **Automated Anycast Edge Rail Plans ([https://answerrail.com/#pricing](https://answerrail.com/#pricing))**:
-  - **Starter ($99/mo · 1 Production Domain)**: Automated `<15ms` Byte-0 Markdown content negotiation across 330+ Cloudflare PoPs with 100% fail-closed price/FAQ recall.
-  - **Growth ($249/mo · 5 Production Domains)**: Multi-domain edge proxy with continuous catalog synchronization.
-  - **Agency ($599/mo · 15 Client Domains)**: Multi-client management, white-label audits, and dedicated enterprise support.
+- **[$79 Zero-DNS 7-File Fix Pack + 30-Day Live 6-Engine Cockpit ($79 One-Time · $1,950 Value · 14-Day Keep-the-Files Guarantee · 100% Credited to Starter)](https://answerrail.com/api/checkout/start?plan=fix_pack&channel=mcp_readme)**: Permanent 1-Click WordPress `.zip` plugin + `/llms.txt`, `/llms-full.txt`, dual `/.well-known/ai-catalog.json` & `/.well-known/ard.json` Zero-Click Wedge, `Schema.org @graph`, GA4 `ai-attribution.js` Dark-AI lead tag, and a 30-Day Live 6-Engine Cockpit Pass ($0 auto-rebill).
+- **24/7 Automated Anycast Edge Autopilot Plans ([https://answerrail.com/#pricing](https://answerrail.com/#pricing))**:
+  - **Starter ($99/mo · Just $20 Month 1 w/ $79 Fix Pack Credit · 1 Domain)**: Automated `<15ms` Byte-0 Markdown content negotiation across 330+ Cloudflare PoPs with 100% fail-closed price/FAQ recall & unlimited live cockpit logs.
+  - **Growth ($249/mo · $170 Month 1 w/ Credit · 5 Domains)**: Multi-domain edge proxy with continuous catalog synchronization.
+  - **Agency ($599/mo · $520 Month 1 w/ Credit · 15 Client Domains)**: Multi-client management, white-label audits, and dedicated enterprise support.
 - **Free Web Validators & Empirical Research**:
   - **[Free `/llms.txt` & `/llms-full.txt` Generator (with 25k-Token Proof)](https://answerrail.com/tools/llms-txt-generator)**
   - **[`/llms.txt` & ARD 1.0 `ai-catalog.json` Validator (for Lighthouse 13.5)](https://answerrail.com/tools/llms-txt-validator)**
